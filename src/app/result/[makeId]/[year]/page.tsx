@@ -51,16 +51,30 @@ async function getCars(makeId: string, year: string) {
   }
 }
 
+async function getCurrentCar(makeId: string) {
+    try {
+        const res = await fetch(
+          `https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeId/${makeId}?format=json`
+        );
+        const data = await res.json();
+        return data.Results;
+      } catch (err) {
+        return {
+          notFound: true,
+        };
+      } 
+}
+
 export default async function ResultPage({
   params,
 }: {
   params: { makeId: string; year: string };
 }) {
   const cars = await getCars(params.makeId, params.year);
-
+  const currentCar = await getCurrentCar(params.makeId)
   return (
     <div>
-      <h2>Models of {cars[0].Make_Name} for {params.year}</h2>
+      <h2>Models of {currentCar[0].Make_Name} for {params.year}</h2>
       <div>{cars.length > 0 ? <ul>
         {cars.map((car:IMakeExtended) => <li key={car.Make_ID}>
             <div>
