@@ -1,7 +1,5 @@
 "use client";
-import Image from "next/image";
-import SelectComponent from "./(components)/selectComponent";
-import { ChangeEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
 interface ISingleCarData {
@@ -21,12 +19,7 @@ export default function Home() {
   const [selectedYear, setSelectedYear] = useState(currentYear);
 
   const fetchCarsData = async () => {
-    const responce = await fetch(
-      `https://vpic.nhtsa.dot.gov/api/vehicles/GetMakesForVehicleType/car?format=json`,
-      {
-        method: "GET",
-      }
-    );
+    const responce = await fetch(`https://vpic.nhtsa.dot.gov/api/vehicles/GetMakesForVehicleType/car?format=json`);
     const data = await responce.json();
     setCarsData(data?.Results);
   };
