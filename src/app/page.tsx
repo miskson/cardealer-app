@@ -10,14 +10,13 @@ interface ISingleCarData {
   VehicleTypeName: string;
 }
 export default function Home() {
-  const currentYear = new Date().getFullYear();
   const yearsRange = Array.from(
-    { length: currentYear - 2015 + 1 },
+    { length: new Date().getFullYear() - 2015 + 1 },
     (_, i) => 2015 + i
   );
   const [carsData, setCarsData] = useState([] as ISingleCarData[] | []);
   const [selectedCar, setSelectedCar] = useState(440);
-  const [selectedYear, setSelectedYear] = useState(currentYear);
+  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchCarsData = async () => {
@@ -38,43 +37,66 @@ export default function Home() {
   }, [carsData, setCarsData]);
 
   return (
-    <main>
-      <header>
-        <h1>car dealer app {currentYear}</h1>
+    <main className="text-gray-800">
+      <header className="app-header">
+        <h1>Car Dealer App {new Date().getFullYear()}</h1>
       </header>
       {isLoading ? (
         <Loading />
       ) : (
-        <div>
-          <label htmlFor="car-select">car:</label>
-          <select
-            name="car-select"
-            value={selectedCar}
-            onChange={(e) => setSelectedCar(+e.target.value)}
-          >
-            {carsData?.map((item) => (
-              <option value={item?.MakeId} key={item?.MakeId}>
-                {item?.MakeName}
-              </option>
-            ))}
-          </select>
-          <label htmlFor="year-select">year:</label>
-          <select
-            name="year-select"
-            value={selectedYear}
-            onChange={(e) => setSelectedYear(+e.target.value)}
-          >
-            {yearsRange?.map((year) => (
-              <option value={year} key={year}>
-                {year}
-              </option>
-            ))}
-          </select>
-          <br />
-          <Link href={`result/${selectedCar}/${selectedYear}`}>
-            <button disabled={!selectedCar || !selectedYear}>NEXT</button>
-          </Link>
-        </div>
+        <section className="flex place-content-center">
+          <div className="sm:border w-max sm:p-5 mt-10">
+            <div className="app-select-container">
+              <div>
+                <label className="app-label" htmlFor="car-select">
+                  Car:
+                </label>
+                <select
+                  className="app-select"
+                  name="car-select"
+                  value={selectedCar}
+                  onChange={(e) => setSelectedCar(+e.target.value)}
+                >
+                  {carsData?.map((item) => (
+                    <option value={item?.MakeId} key={item?.MakeId}>
+                      {item?.MakeName}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label className="app-label" htmlFor="year-select">
+                  Year:
+                </label>
+                <select
+                  className="app-select"
+                  name="year-select"
+                  value={selectedYear}
+                  onChange={(e) => setSelectedYear(+e.target.value)}
+                >
+                  {yearsRange?.map((year) => (
+                    <option value={year} key={year}>
+                      {year}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+            <div className="flex place-content-center">
+              <Link
+                className="block w-fit"
+                href={`result/${selectedCar}/${selectedYear}`}
+              >
+                <button
+                  className="app-button place-content-center"
+                  disabled={!selectedCar || !selectedYear}
+                >
+                  NEXT
+                </button>
+              </Link>
+            </div>
+          </div>
+        </section>
       )}
     </main>
   );

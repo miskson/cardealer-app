@@ -74,19 +74,27 @@ export default async function ResultPage({
   const currentCar = await getCurrentCar(params.makeId);
   return (
     <div>
-      <h2>
-        Models of {currentCar[0].Make_Name} for {params.year}
-      </h2>
-      <div>
+      <header className="app-header">
+        <h1>
+          Car Dealer App / {currentCar[0].Make_Name} of {params.year}
+        </h1>
+      </header>
+      <section className="mt-10 mx-2 px-2">
         {cars.length > 0 ? (
           <ul>
-            {cars.map((car: IMakeExtended) => (
-              <li key={car.Make_ID}>
+            {cars.map((car: IMakeExtended, index: number) => (
+              <li
+                className={`mb-5 border p-2 rounded-md ${index % 2 && "bg-gray-200"}`}
+                key={index}
+              >
                 <div>
-                  <h4>{car.Make_Name}</h4>
-                  <h3>
-                    {car.Model_Name} {params.year}
-                  </h3>
+                  <h4 className="font-mono">{car.Make_Name}</h4>
+                  <p>
+                    Model: <strong className="font-mono">{car.Model_Name}</strong>
+                  </p>
+                  <p>
+                    Year: <strong className="font-mono">{params.year}</strong>
+                  </p>
                 </div>
               </li>
             ))}
@@ -94,7 +102,7 @@ export default async function ResultPage({
         ) : (
           <p>No cars found</p>
         )}
-      </div>
+      </section>
     </div>
   );
 }
