@@ -1,7 +1,7 @@
-"use client";
-import { useEffect, useState } from "react";
-import Link from "next/link";
-import Loading from "./_components/Loading/loading";
+'use client';
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
+import Loading from './_components/Loading/loading';
 
 interface ISingleCarData {
   MakeId: number;
