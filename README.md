@@ -6,7 +6,7 @@ To instal this project you need to clone it to your computer. The most simple wa
 ```bash
 git clone https://github.com/miskson/cardealer-app.git
 ```
-After project successfully cloned to your computer go to folder where it is situated:
+After project successfully cloned to your computer go to folder where it is situated and install dependencies via npm command:
 
 ```bash
     cd cardealer-app
