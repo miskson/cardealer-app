@@ -1,10 +1,16 @@
+.loading-spinner {
+  display: grid;
+  place-items: center;
+  height: 85vh;
+}
 
 .lds-dual-ring,
 .lds-dual-ring:after {
   box-sizing: border-box;
 }
 .lds-dual-ring {
-  display: inline-block;
+  display: block;
+  margin: 0 auto;
   width: 80px;
   height: 80px;
 }
@@ -27,4 +33,3 @@
     transform: rotate(360deg);
   }
 }
-

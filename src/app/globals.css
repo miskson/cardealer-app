@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.app-header {
+  @apply bg-slate-300 px-4 py-4 font-mono font-bold text-xl;
+}
+
+.app-select-container {
+  @apply sm:mx-2 my-5 flex flex-auto flex-wrap flex-col sm:flex-row place-content-evenly space-y-4 sm:space-x-4 sm:space-y-0 p-5 border border-slate-300 rounded-md;
+}
+
+.app-select {
+  @apply border max-w-64 sm:max-w-fit border-gray-300 rounded-md p-2 bg-white text-gray-900;
+}
+
+.app-button {
+  @apply block rounded-md py-3 px-3 text-lg transition-colors enabled:bg-green-400 disabled:bg-gray-400 font-mono disabled:text-gray-300 enabled:text-gray-800 enabled:active:bg-green-300 enabled:active:text-gray-900 enabled:hover:bg-green-500;
+}
+
+.app-label {
+  @apply block text-base font-mono;
+}
