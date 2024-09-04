@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 interface IMake {
   Make_ID: number;
@@ -84,13 +84,14 @@ export default async function ResultPage({
           <ul>
             {cars.map((car: IMakeExtended, index: number) => (
               <li
-                className={`mb-5 border p-2 rounded-md ${index % 2 && "bg-gray-200"}`}
+                className={`mb-5 border p-2 rounded-md ${index % 2 && 'bg-gray-200'}`}
                 key={index}
               >
                 <div>
                   <h4 className="font-mono">{car.Make_Name}</h4>
                   <p>
-                    Model: <strong className="font-mono">{car.Model_Name}</strong>
+                    Model:{' '}
+                    <strong className="font-mono">{car.Model_Name}</strong>
                   </p>
                   <p>
                     Year: <strong className="font-mono">{params.year}</strong>
