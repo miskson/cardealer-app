@@ -1,5 +1,22 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Instalation
+
+To instal this project you need to clone it to your computer. The most simple way to do it is via HTTPS. in your terminal input the command:
+```bash
+git clone https://github.com/miskson/cardealer-app.git
+```
+After project successfully cloned to your computer go to folder where it is situated:
+
+```bash
+    cd cardealer-app
+    npm install
+```
+
+## Car Dealer App
+
+This project serves as a demonstration of expertise in Next.js and Tailwind CSS.
+
 ## Getting Started
 
 First, run the development server:
