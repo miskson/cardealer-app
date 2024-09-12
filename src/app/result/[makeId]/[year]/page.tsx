@@ -1,18 +1,18 @@
 import React from 'react';
 
 export const dynamic = 'force-static';
-export const dynamicParams = false;
+export const dynamicParams = true;
 
 interface IMake {
-  Make_ID: number;
-  Make_Name: string;
+  Make_ID?: number;
+  Make_Name?: string;
 }
 
 interface IMakeExtended {
-  Make_ID: number;
-  Make_Name: string;
-  Model_ID: number;
-  Model_Name: string;
+  Make_ID?: number;
+  Make_Name?: string;
+  Model_ID?: number;
+  Model_Name?: string;
 }
 
 async function getCars(makeId: string, year: string) {
@@ -86,8 +86,12 @@ export default async function ResultPage({
   );
 }
 
-export async function generateStaticParams() {
-  let paths: any = [];
+export async function generateStaticParams(): Promise<
+  Array<{ makeId: string; year: string }>
+> {
+  const paths: Array<{ makeId: string; year: string }> = [
+    { makeId: '440', year: '2022' },
+  ];
   try {
     const makeResponce = await fetch(
       `https://vpic.nhtsa.dot.gov/api//vehicles/GetAllMakes?format=json`
@@ -102,18 +106,14 @@ export async function generateStaticParams() {
       (_, i) => 2015 + i
     );
 
-    makeIdArr
-      .flatMap((makeId: number) =>
-        yearsRange.map((year: number) => ({
-          params: {
-            makeId: makeId.toString(),
-            year: year.toString(),
-          },
+    paths.push(
+      ...makeIdArr.flatMap((makeId: number) =>
+        yearsRange.map((year) => ({
+          makeId: makeId.toString(),
+          year: year.toString(),
         }))
       )
-      .forEach((path: { params: { makeId: string; year: string } }) => {
-        paths.push(path);
-      });
+    );
   } catch (error) {
     console.error('Error fetching data', error);
   }
