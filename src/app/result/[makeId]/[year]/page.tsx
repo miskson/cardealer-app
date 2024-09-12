@@ -54,11 +54,14 @@ export default async function ResultPage({
     <div>
       <header className="app-header">
         <h1>
-          Car Dealer App / {currentCar[0].Make_Name} of {params.year}
+          Car Dealer App /{' '}
+          {currentCar.length > 0
+            ? `${currentCar[0].Make_Name} of ${params.year}`
+            : 'Car not found :('}
         </h1>
       </header>
       <section className="mt-10 mx-2 px-2">
-        {cars.length > 0 ? (
+        {cars.length > 0 && currentCar.length > 0 ? (
           <ul>
             {cars.map((car: IMakeExtended, index: number) => (
               <li
@@ -79,7 +82,7 @@ export default async function ResultPage({
             ))}
           </ul>
         ) : (
-          <p>No cars found</p>
+          <p>Sorry, no such cars of {params.year} found</p>
         )}
       </section>
     </div>
