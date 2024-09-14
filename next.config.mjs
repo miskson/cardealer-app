@@ -4,7 +4,6 @@ const nextConfig = {
   reactStrictMode: true,
   distDir: 'docs',
   assetPrefix: '/cardealer-app',
-  basePath: '/cardealer-app',
 };
 
 export default nextConfig;
