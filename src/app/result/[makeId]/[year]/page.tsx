@@ -1,6 +1,5 @@
-import React from 'react';
 import Link from 'next/link';
-
+import React from 'react';
 export const dynamic = 'force-static';
 export const dynamicParams = true;
 
@@ -51,6 +50,7 @@ export default async function ResultPage({
 }) {
   const cars = await getCars(params.makeId, params.year);
   const currentCar = await getCurrentCar(params.makeId);
+
   return (
     <div>
       <header className="app-header">
@@ -62,7 +62,7 @@ export default async function ResultPage({
         </h1>
       </header>
       <div className="flex place-content-start mt-5 mx-4">
-        <Link className="block w-fit" href={`/`}>
+        <Link href={'/'} className="block w-fit">
           <button className="app-button place-content-center">
             {'< '}BACK
           </button>
