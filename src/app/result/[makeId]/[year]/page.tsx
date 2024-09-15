@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 export const dynamic = 'force-static';
 export const dynamicParams = true;
@@ -60,7 +61,14 @@ export default async function ResultPage({
             : 'Car not found :('}
         </h1>
       </header>
-      <section className="mt-10 mx-2 px-2">
+      <div className="flex place-content-start mt-5 mx-4">
+        <Link className="block w-fit" href={`/`}>
+          <button className="app-button place-content-center">
+            {'< '}BACK
+          </button>
+        </Link>
+      </div>
+      <section className="mt-5 mx-2 px-2">
         {cars.length > 0 && currentCar.length > 0 ? (
           <ul>
             {cars.map((car: IMakeExtended, index: number) => (
